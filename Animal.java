@@ -1,45 +1,61 @@
+import java.awt.Graphics2D;
+
 public class Animal {
-    private String name;
+    private final String type;
+    private double x;
+    private double y;
+    private final int size;
+    private final double speed;
     private int health;
-    private int x, y; // Position coordinates
+    private final int contactDamage;
 
-    public Animal(String name, int initialHealth) {
-        this.name = name;
-        this.health = initialHealth;
-        this.x = 0;
-        this.y = 0;
+    public Animal(String type, double x, double y, int size, double speed, int health, int contactDamage) {
+        this.type = type;
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speed = speed;
+        this.health = health;
+        this.contactDamage = contactDamage;
     }
 
-    // Method for rendering graphics
-    public void render() {
-        // Code for rendering animal on screen will go here
-        System.out.println("Rendering " + name + " at coordinates: (" + x + ", " + y + ")");
+    public void update(Player player) {
+        double dx = player.getX() - x;
+        double dy = player.getY() - y;
+        double length = Math.sqrt(dx * dx + dy * dy);
+        if (length == 0) {
+            return;
+        }
+
+        x += (dx / length) * speed;
+        y += (dy / length) * speed;
     }
 
-    // Method for moving the animal
-    public void move(int deltaX, int deltaY) {
-        this.x += deltaX;
-        this.y += deltaY;
-        System.out.println(name + " moved to: (" + x + ", " + y + ")");
+    public void draw(Graphics2D g2) {
+        GraphicsEngine.drawEnemy(g2, type, (int) x, (int) y, size, health);
     }
 
-    // Method to receive damage
-    public void takeDamage(int damage) {
-        health -= damage;
-        if (health < 0) health = 0;
-        System.out.println(name + " took damage, health now: " + health);
+    public boolean collidesWithPlayer(Player player) {
+        double dx = player.getX() - x;
+        double dy = player.getY() - y;
+        return Math.sqrt(dx * dx + dy * dy) <= player.getSize() * 0.5 + size * 0.5;
     }
 
-    // Getters for health and position
-    public int getHealth() {
-        return health;
+    public boolean containsPoint(double px, double py) {
+        double dx = px - x;
+        double dy = py - y;
+        return Math.sqrt(dx * dx + dy * dy) <= size * 0.5;
     }
 
-    public int getX() {
-        return x;
+    public void takeDamage(int value) {
+        health -= value;
     }
 
-    public int getY() {
-        return y;
+    public boolean isDead() {
+        return health <= 0;
+    }
+
+    public int getContactDamage() {
+        return contactDamage;
     }
 }

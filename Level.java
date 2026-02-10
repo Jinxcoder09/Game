@@ -1,32 +1,49 @@
-public class Level {
-    private int levelNumber;
-    private String difficulty;
-    private String[] levelMechanics;
+import java.awt.Color;
 
-    public Level(int levelNumber, String difficulty, String[] levelMechanics) {
+public class Level {
+    private final int levelNumber;
+    private final String name;
+    private final int enemyCount;
+    private final double enemySpeed;
+    private final int enemyHealth;
+    private final int spawnIntervalTicks;
+    private final Color skyTint;
+
+    public Level(int levelNumber, String name, int enemyCount, double enemySpeed, int enemyHealth, int spawnIntervalTicks, Color skyTint) {
         this.levelNumber = levelNumber;
-        this.difficulty = difficulty;
-        this.levelMechanics = levelMechanics;
+        this.name = name;
+        this.enemyCount = enemyCount;
+        this.enemySpeed = enemySpeed;
+        this.enemyHealth = enemyHealth;
+        this.spawnIntervalTicks = spawnIntervalTicks;
+        this.skyTint = skyTint;
     }
 
     public int getLevelNumber() {
         return levelNumber;
     }
 
-    public String getDifficulty() {
-        return difficulty;
+    public String getName() {
+        return name;
     }
 
-    public String[] getLevelMechanics() {
-        return levelMechanics;
+    public int getEnemyCount() {
+        return enemyCount;
     }
 
-    public void displayLevelInfo() {
-        System.out.println("Level: " + levelNumber + " | Difficulty: " + difficulty);
-        System.out.print("Mechanics: ");
-        for (String mechanic : levelMechanics) {
-            System.out.print(mechanic + " ");
-        }
-        System.out.println();
+    public double getEnemySpeed() {
+        return enemySpeed;
+    }
+
+    public int getEnemyHealth() {
+        return enemyHealth;
+    }
+
+    public int getSpawnIntervalTicks() {
+        return spawnIntervalTicks;
+    }
+
+    public Color getSkyTint() {
+        return skyTint;
     }
 }
