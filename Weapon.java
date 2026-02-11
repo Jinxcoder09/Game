@@ -1,35 +1,35 @@
 public class Weapon {
-    private String name;
-    private int effectiveness;
-    private int durability;
+    private final String name;
+    private final int damage;
+    private final int cooldownMs;
+    private final double projectileSpeed;
+    private final int projectileRadius;
 
-    public Weapon(String name, int effectiveness, int durability) {
+    public Weapon(String name, int damage, int cooldownMs, double projectileSpeed, int projectileRadius) {
         this.name = name;
-        this.effectiveness = effectiveness;
-        this.durability = durability;
+        this.damage = damage;
+        this.cooldownMs = cooldownMs;
+        this.projectileSpeed = projectileSpeed;
+        this.projectileRadius = projectileRadius;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getEffectiveness() {
-        return effectiveness;
+    public int getDamage() {
+        return damage;
     }
 
-    public int getDurability() {
-        return durability;
+    public int getCooldownMs() {
+        return cooldownMs;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public double getProjectileSpeed() {
+        return projectileSpeed;
     }
 
-    public void setEffectiveness(int effectiveness) {
-        this.effectiveness = effectiveness;
-    }
-
-    public void setDurability(int durability) {
-        this.durability = durability;
+    public int getProjectileRadius() {
+        return projectileRadius;
     }
 }
