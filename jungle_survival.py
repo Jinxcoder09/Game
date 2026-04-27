@@ -13,7 +13,12 @@ from typing import List, Optional, Tuple
 
 # Initialize Pygame
 pygame.init()
-pygame.mixer.init(frequency=44100, size=-8, channels=1)
+try:
+    pygame.mixer.init(frequency=44100, size=-8, channels=1)
+    AUDIO_AVAILABLE = True
+except pygame.error:
+    print("Warning: Audio device not available. Running without sound.")
+    AUDIO_AVAILABLE = False
 
 
 class GameState(Enum):
@@ -164,6 +169,9 @@ class SoundEngine:
 
     def play_tone(self, hz: int, msecs: int, volume: float):
         """Play a tone using pygame mixer."""
+        if not AUDIO_AVAILABLE:
+            return
+            
         def generate_and_play():
             try:
                 sample_rate = 44100
