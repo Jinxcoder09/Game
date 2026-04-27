@@ -1,6 +1,6 @@
 # Jungle Strike: Survivor
 
-A fast-paced 2D Java action game built with Swing.
+A fast-paced 2D Python action game built with Pygame.
 
 ## What Was Upgraded
 This project has been transformed from early prototype files into a playable action game loop with:
@@ -23,8 +23,8 @@ This project has been transformed from early prototype files into a playable act
 
 ## Run
 ```bash
-javac *.java
-java JungleSurvivalGame
+pip install pygame
+python jungle_survival.py
 ```
 
 ## Game Objective
@@ -32,5 +32,5 @@ Survive all enemy waves across 3 jungle sectors and clear the final level.
 
 ## Technical Notes
 - No external assets are required.
-- Graphics are rendered directly in Java2D.
-- Sound is generated at runtime using `javax.sound.sampled`.
+- Graphics are rendered directly using Pygame.
+- Sound is generated at runtime using Pygame's mixer module.
